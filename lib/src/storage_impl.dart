@@ -1,7 +1,11 @@
 import 'dart:async';
+import 'dart:collection';
+import 'dart:developer';
 import 'package:flutter/widgets.dart';
 import 'package:get/utils.dart';
+// import 'package:get/utils.dart';
 import 'storage/html.dart' if (dart.library.io) 'storage/io.dart';
+import 'storage/storage_queue.dart';
 import 'value.dart';
 
 /// Instantiate GetStorage to access storage driver apis
@@ -150,7 +154,7 @@ class GetStorage {
 
   late StorageImpl _concrete;
 
-  GetQueue queue = GetQueue();
+  StorageQueue queue = StorageQueue();
 
   /// listenable of container
   ValueStorage<Map<String, dynamic>> get listenable => _concrete.subject;

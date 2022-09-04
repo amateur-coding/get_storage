@@ -1,3 +1,5 @@
+
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -13,7 +15,7 @@ void main() async {
 
   late GetStorage g;
 
-  const channel = MethodChannel('plugins.flutter.io/path_provider');
+  final channel =Platform.isMacOS?MethodChannel('plugins.flutter.io/path_provider_macos'):  MethodChannel('plugins.flutter.io/path_provider');
   void setUpMockChannels(MethodChannel channel) {
     TestDefaultBinaryMessengerBinding.instance?.defaultBinaryMessenger.setMockMethodCallHandler(
       channel,
@@ -21,6 +23,7 @@ void main() async {
         if (methodCall?.method == 'getApplicationDocumentsDirectory') {
           return '.';
         }
+        return null;
       },
     );
   }
@@ -41,6 +44,7 @@ void main() async {
     g.write('test2', 'a');
 
     final removeListen = g.listenKey('test', (val) {
+      log(val.toString());
       valueListen = val;
     });
 
