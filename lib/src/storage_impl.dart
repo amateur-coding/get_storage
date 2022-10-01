@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:developer';
 import 'package:flutter/widgets.dart';
-import 'package:get/utils.dart';
-// import 'package:get/utils.dart';
 import 'storage/html.dart' if (dart.library.io) 'storage/io.dart';
 import 'storage/storage_queue.dart';
 import 'value.dart';
